@@ -1,4 +1,5 @@
 #include "ListArrNode.h"
+#include <iostream>
 
 ListArrNode::ListArrNode(int b, ListArrNode *next) {
 	mArr = new int[b];
@@ -35,6 +36,21 @@ void ListArrNode::insertAt(int v, int i) {
 		throw "ListArrNode is full, you cannot insert elements";
 	this->moveElementsRight(i);
 	this->mArr[i] = v;
+}
+
+void ListArrNode::print() {
+	std::cout << "[";
+	for (int i=0;i<this->size()-1;++i) {
+		std::cout << this->mArr[i] << ", ";
+	}
+	if (!this->isEmpty()) {
+		std::cout << this->mArr[this->size()-1];
+	}
+	std::cout << "]";
+}
+
+bool ListArrNode::isEmpty() {
+	return !this->size();
 }
 
 bool ListArrNode::isFull() {

@@ -10,6 +10,8 @@ class ListArrNode {
 		int operator[](int i);
 		int size();
 		void insertAt(int v, int i);
+		void print();
+		bool isEmpty();
 
 	private:
 		int b;
