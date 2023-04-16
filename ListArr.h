@@ -2,6 +2,8 @@
 #define ListArr_h
 
 #include "ListArrADT.h"
+#include "ListArrNode.h"
+#include "TreeNode.h"
 
 class ListArr: ListArrADT {
 	public:
@@ -9,10 +11,14 @@ class ListArr: ListArrADT {
 		int size();
 		void insertLeft(int v);
 		void insertRight(int v);
-		void insertAT(int v, int i);
+		void insertAt(int v, int i);
 		void print();
 		bool find(int v);
 
+	private:
+		int b;
+		ListArrNode *mHead;
+		TreeNode *mTree;
 
 };
 
