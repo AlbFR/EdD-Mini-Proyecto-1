@@ -17,8 +17,11 @@ class ListArr: ListArrADT {
 
 	private:
 		int b;
+		int mNodesAmount;
 		ListArrNode *mHead;
 		TreeNode *mTree;
+		int* getPointerToRank(int i);
+		void initTree(TreeNode *mTree);
 
 };
 

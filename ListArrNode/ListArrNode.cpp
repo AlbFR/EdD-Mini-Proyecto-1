@@ -4,7 +4,7 @@
 ListArrNode::ListArrNode(int b, ListArrNode *next) {
 	mArr = new int[b];
 	this->setNext(next);
-	this->mUsedSize = 0;
+	mUsedSize = 0;
 }
 
 ListArrNode::~ListArrNode() {
@@ -12,13 +12,13 @@ ListArrNode::~ListArrNode() {
 }
 
 ListArrNode* ListArrNode::getNext() {
-	return this->mNext;
+	return mNext;
 }
 
 void ListArrNode::setNext(ListArrNode *next) {
-	if (this->mNext != nullptr)
-		delete this->mNext;
-	this->mNext = next;
+	if (mNext != nullptr)
+		delete mNext;
+	mNext = next;
 }
 
 int ListArrNode::operator[](int i) {
@@ -28,14 +28,14 @@ int ListArrNode::operator[](int i) {
 }
 
 int ListArrNode::size() {
-	return this->mUsedSize;
+	return mUsedSize;
 }
 
 void ListArrNode::insertAt(int v, int i) {
 	if (this->isFull())
 		throw "ListArrNode is full, you cannot insert elements";
 	this->moveElementsRight(i);
-	this->mArr[i] = v;
+	mArr[i] = v;
 }
 
 void ListArrNode::print() {
@@ -49,6 +49,13 @@ void ListArrNode::print() {
 	std::cout << "]";
 }
 
+bool ListArrNode::find(int v) {
+	for (int i=0;i<mUsedSize;++i) {
+		if (mArr[i] == v) return true;
+	}
+	return false;
+}
+
 bool ListArrNode::isEmpty() {
 	return !this->size();
 }
@@ -58,7 +65,7 @@ bool ListArrNode::isFull() {
 }
 
 void ListArrNode::moveElementsRight(int i) {
-	for (int j=this->size();j>i;--j) {
-		this->mArr[j] = this->mArr[j-1];
+	for (int j=mUsedSize;j>i;--j) {
+		mArr[j] = mArr[j-1];
 	}
 }

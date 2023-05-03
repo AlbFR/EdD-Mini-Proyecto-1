@@ -12,13 +12,14 @@ class ListArrNode {
 		void insertAt(int v, int i);
 		void print();
 		bool isEmpty();
+		bool isFull();
+		bool find(int v);
 
 	private:
 		int b;
 		int mUsedSize;
 		ListArrNode* mNext;
 		int *mArr;
-		bool isFull();
 		void moveElementsRight(int i);
 };
 
