@@ -2,8 +2,8 @@
 #define ListArr_h
 
 #include "ListArrADT.h"
-#include "ListArrNode.h"
-#include "TreeNode.h"
+#include "ListArrNode/ListArrNode.h"
+#include "Tree/TreeNode.h"
 
 class ListArr: ListArrADT {
 	public:
@@ -13,15 +13,16 @@ class ListArr: ListArrADT {
 		void insertRight(int v);
 		void insertAt(int v, int i);
 		void print();
-		bool find(int v);
+		bool find(int v) const;
 
 	private:
 		int b;
 		int mNodesAmount;
 		ListArrNode *mHead;
 		TreeNode *mTree;
-		int* getPointerToRank(int i);
-		void initTree(TreeNode *mTree);
+		int* getPointerToPos(int i);
+		void initTree();
+		bool isSpaceNextToPos(int i) const;
 
 };
 

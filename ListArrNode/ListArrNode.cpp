@@ -5,6 +5,7 @@ ListArrNode::ListArrNode(int b, ListArrNode *next) {
 	mArr = new int[b];
 	this->setNext(next);
 	mUsedSize = 0;
+	std::cout << "A ListArrNode was initialized succesfully :D" << std::endl;
 }
 
 ListArrNode::~ListArrNode() {
@@ -68,4 +69,8 @@ void ListArrNode::moveElementsRight(int i) {
 	for (int j=mUsedSize;j>i;--j) {
 		mArr[j] = mArr[j-1];
 	}
+}
+
+int* ListArrNode::getPointerToPos(int i) {
+	return mArr+i;
 }

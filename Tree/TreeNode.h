@@ -5,24 +5,25 @@
 
 class TreeNode {
 	public:
-	 	bool isLeaf;
-		void init(ListArrNode *l, ListArrNode *r);
-		void init(TreeNode *l, TreeNode *r);
+		// bool init(ListArrNode *listNode, int level);
+		int init(ListArrNode *listNode, int level);
+		void setValue(int s);
 		TreeNode* getLeftChild();
 		TreeNode* getRightChild();
 		ListArrNode* getLeftListArrChild();
 		ListArrNode* getRightListArrChild();
-		int getLeftChildSize();
-		int getRightChildSize();
 		void setLeftChild(TreeNode*);
 		void setRightChild(TreeNode*);
 		void setLeftChild(ListArrNode*);
 		void setRightChild(ListArrNode*);
 		int size();
 		void update();
-		int initNode(TreeNode *tn);
+		void print();
+		int* getPointerToPos(int i);
+		bool isSpaceNextToPos(int i);
 
 	private:
+		bool isLeaf;
 		int mElementsAmount;
 		ListArrNode *mLeftListArrChild;
 		ListArrNode *mRightListArrChild;

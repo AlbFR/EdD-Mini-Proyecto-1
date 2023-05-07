@@ -18,7 +18,7 @@ class ListArrADT {
 	virtual void print() = 0;
 
 	// Returns true if value v exists in ListArr, otherwise returns false
-	virtual bool find(int v) = 0;
+	virtual bool find(int v) const = 0;
 };
 
 #endif

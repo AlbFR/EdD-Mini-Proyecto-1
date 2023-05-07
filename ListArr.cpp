@@ -1,11 +1,13 @@
 #include "ListArr.h"
 #include <iostream>
+#include <cmath>
 
 ListArr::ListArr(int b) {
 	this->b = b;
 	this->mNodesAmount = 1;
 	mHead = new ListArrNode(b, nullptr);
-	mTree = nullptr;
+	mTree = new TreeNode();
+	mTree->init(mHead, 0);
 }
 
 int ListArr::size() {
@@ -21,7 +23,12 @@ void ListArr::insertRight(int v) {
 }
 
 void ListArr::insertAt(int v, int i) {
-	
+	if (i == 0)
+		this->insertLeft(v);
+	if (isSpaceNextToPos(i-1)) {
+
+	}	
+
 }
 
 void ListArr::print() {
@@ -34,7 +41,7 @@ void ListArr::print() {
 	std::cout << std::endl;
 }
 
-bool ListArr::find(int v) {
+bool ListArr::find(int v) const {
 	ListArrNode *current = mHead;
 	while (current != nullptr) {
 		if (current->find(v)) return true;
@@ -43,10 +50,16 @@ bool ListArr::find(int v) {
 	return false;
 }
 
-int* getPointerToRank(TreeNode *treeNode, int i) {
-
+int* ListArr::getPointerToPos(int i) {
+	return mTree->getPointerToPos(i);
 }
 
-void initTree(TreeNode *tn) {
+void ListArr::initTree() {
+	int n = mNodesAmount;
+	const int levels = (int)ceil(log(n)/log(2));
+	mTree->setValue(mTree->init(mHead, levels));
+}
 
+bool ListArr::isSpaceNextToPos(int i) const {
+	return mTree->isSpaceNextToPos(i);
 }

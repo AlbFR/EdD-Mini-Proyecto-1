@@ -14,6 +14,7 @@ class ListArrNode {
 		bool isEmpty();
 		bool isFull();
 		bool find(int v);
+		int* getPointerToPos(int i);
 
 	private:
 		int b;
