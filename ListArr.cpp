@@ -30,7 +30,6 @@ void ListArr::insertLeft(int v) {
 	mHead = neu;
 	mNodesAmount++;
 	deleteTree();
-	mTree = new TreeNode();
 	initTree();
 }
 
@@ -43,10 +42,9 @@ void ListArr::insertAt(int v, int i) {
 		throw "Index out of bounds, cannot insert there";
 	if (i == 0)
 		this->insertLeft(v);
+
 	bool newNode = false;
-	std::cerr << "xd" << std::endl;
 	*(this->getPointerToPos(i-1, newNode)) = v;
-	std::cerr << "xd" << std::endl;
 	if (newNode) {
 		mNodesAmount++;
 		deleteTree();
@@ -87,6 +85,7 @@ int ListArr::calculateHeight(int n) {
 void ListArr::initTree() {
 	const int levels = calculateHeight(mNodesAmount);
 	ListArrNode *run = mHead;
+	mTree = new TreeNode();
 	mTree->init(run, levels);
 }
 

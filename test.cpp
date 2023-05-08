@@ -2,7 +2,7 @@
 #include "ListArr.h"
 
 int main() {
-	int b = 6;
+	int b = 3;
 	ListArr *la = new ListArr(b);
 
 	// la->printTree();
@@ -25,26 +25,30 @@ int main() {
 	// head->print();
 
 	la->insertLeft(4);
-	la->print();
-	la->printTree();
-	std::cout << std::endl;
 
 	la->insertLeft(6);
-	la->print();
-	la->printTree();
-	std::cout << std::endl;
 
 	la->insertLeft(10);
+
+	la->insertLeft(3);
+
 	la->print();
 	la->printTree();
 	std::cout << std::endl;
 
-	la->insertLeft(3);
-	la->print();
-	la->printTree();
-	std::cout << std::endl;
-	la->print();
 	la->insertAt(5, 2);
 	la->print();
+	la->insertAt(6, 2);
+	la->print();
+	la->insertAt(7, 2);
+	la->print();
+	la->insertAt(8, 2);
+	la->print();
+	la->insertAt(5, 7);
+	la->print();
+	la->insertAt(5, 1);
+
+	la->print();
+	la->printTree();
 	delete la;
 }

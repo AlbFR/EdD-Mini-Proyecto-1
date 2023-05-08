@@ -146,13 +146,14 @@ void TreeNode::print() {
 int* TreeNode::getPointerToPos(int i, bool &newNode) {
 	int m;
 	ListArrNode *work = this->getListArrNodeFromPos(i, m);
-	std::cerr << "m has been turned to " << m << std::endl;
+	m++;
 	if (work->isFull()) {
 		work->mitosis(m);	
 		newNode = true;
 	}
-	else
+	else {
 		work->moveElementsRight(m);
+	}
 	return work->getPointerToPos(m);
 }
 
@@ -171,7 +172,7 @@ ListArrNode* TreeNode::getListArrNodeFromPos(int i, int &m) {
 	int lower_size;
 	if (isLeaf) {
 		lower_size = mLeftListArrChild->size();
-		if (lower_size < i) {
+		if (lower_size > i) {
 			m = i;
 			return mLeftListArrChild;
 		}
@@ -181,7 +182,7 @@ ListArrNode* TreeNode::getListArrNodeFromPos(int i, int &m) {
 		}
 	}	
 	lower_size = mLeftChild->size();
-	if (lower_size < i)
+	if (lower_size > i)
 		return mLeftChild->getListArrNodeFromPos(i, m);
 	else
 		return mRightChild->getListArrNodeFromPos(i-lower_size, m);

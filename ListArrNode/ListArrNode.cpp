@@ -72,6 +72,7 @@ void ListArrNode::moveElementsRight(int i) {
 	for (int j=mUsedSize;j>i;--j) {
 		mArr[j] = mArr[j-1];
 	}
+	mUsedSize++;
 }
 
 int* ListArrNode::getPointerToPos(int i) {
