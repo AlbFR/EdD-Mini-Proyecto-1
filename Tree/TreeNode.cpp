@@ -8,42 +8,26 @@ TreeNode::~TreeNode() {
 	}
 }
 
-int TreeNode::init(ListArrNode *listNode, int level) {
+int TreeNode::init(ListArrNode *&listNode, int level) {
 	if (!level) { // The node is a leaf
 		isLeaf = true;
-		listNode->print();
-	 	ListArrNode *left = listNode;
-		if (left == nullptr) {
+		if (listNode == nullptr) {
 			mElementsAmount = 0;
 			return 0;
 		}
-		ListArrNode *right = listNode->getNext();
-		if (right == nullptr)
-			return mElementsAmount;
-		std::cout << "ListNode has moved from ";
-		listNode->print();
-		this->setLeftChild(left);
-		std::cout << " to ";
+		this->setLeftChild(listNode);
 
+		mElementsAmount = listNode->size();
+		listNode = listNode->getNext();
 
-		mElementsAmount = left->size();
-		listNode = left->getNext();
-
-		listNode->print();
-		std::cout << std::endl;
-		if (right == nullptr) {
+		if (listNode == nullptr) {
 			return mElementsAmount;
 		}
 
-		this->setRightChild(right);
+		this->setRightChild(listNode);
 
-		std::cout << "ListNode has moved from ";
-		listNode->print();
-		listNode = right->getNext();
-		std::cout << " to ";
-		listNode = left->getNext();
-		std::cout << std::endl;
-		mElementsAmount += right->size();
+		mElementsAmount += listNode->size();
+		listNode = listNode->getNext();
 		return mElementsAmount;
 	}
 	else {

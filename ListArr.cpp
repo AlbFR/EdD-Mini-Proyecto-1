@@ -7,7 +7,7 @@ ListArr::ListArr(int b) {
 	this->mNodesAmount = 1;
 	mHead = new ListArrNode(b, nullptr);
 	mTree = new TreeNode();
-	mTree->init(mHead, 0);
+	initTree();
 }
 
 ListArr::~ListArr() {
@@ -27,9 +27,10 @@ void ListArr::insertLeft(int v) {
 	}
 	ListArrNode *neu = new ListArrNode(b, mHead);
 	neu->insertRight(v);
-	deleteTree();
 	mHead = neu;
 	mNodesAmount++;
+	deleteTree();
+	mTree = new TreeNode();
 	initTree();
 }
 
@@ -85,10 +86,8 @@ int ListArr::calculateHeight(int n) {
 
 void ListArr::initTree() {
 	const int levels = calculateHeight(mNodesAmount);
-	std::cout << "With " << mNodesAmount << " nodes" << std::endl;
-	std::cout << "Levels: " << levels << std::endl;
-	mTree->init(mHead, levels);
-	std::cout << "Tree initialized successfully" << std::endl;
+	ListArrNode *run = mHead;
+	mTree->init(run, levels);
 }
 
 bool ListArr::isSpaceNextToPos(int i) const {

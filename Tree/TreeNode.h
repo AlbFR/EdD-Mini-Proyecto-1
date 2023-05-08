@@ -7,7 +7,7 @@ class TreeNode {
 	public:
 		// bool init(ListArrNode *listNode, int level);
 		~TreeNode();
-		int init(ListArrNode *listNode, int level);
+		int init(ListArrNode *&listNode, int level);
 		void setValue(int s);
 		TreeNode* getLeftChild();
 		TreeNode* getRightChild();
