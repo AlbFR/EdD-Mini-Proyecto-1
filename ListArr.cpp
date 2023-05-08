@@ -7,6 +7,7 @@ ListArr::ListArr(int b) {
 	this->mNodesAmount = 1;
 	mHead = new ListArrNode(b, nullptr);
 	mTree = new TreeNode();
+	mTail = mHead;
 	initTree();
 }
 
@@ -35,7 +36,11 @@ void ListArr::insertLeft(int v) {
 }
 
 void ListArr::insertRight(int v) {
-	this->insertAt(v, this->size()-1);
+	// this->insertAt(v, this->size()-1);
+	ListArrNode *neu = new ListArrNode(b, nullptr);
+	mTail->setNext(neu);
+	neu->insertRight(v);
+	mTail = neu;
 }
 
 void ListArr::insertAt(int v, int i) {
@@ -55,6 +60,8 @@ void ListArr::insertAt(int v, int i) {
 	}
 	else
 		mTree->update();
+	if (mTail->getNext() != nullptr)
+		mTail = mTail->getNext();
 }
 
 void ListArr::print() {

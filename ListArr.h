@@ -21,7 +21,7 @@ class ListArr: ListArrADT {
 		int b;
 		int mNodesAmount;
 		ListArrNode *mHead;
-		// ListArrNode *mTail;
+		ListArrNode *mTail;
 		TreeNode *mTree;
 		int* getPointerToPos(int i, bool &newNode);
 		void initTree();

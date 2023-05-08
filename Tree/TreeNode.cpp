@@ -2,15 +2,10 @@
 #include <iostream>
 
 TreeNode::~TreeNode() {
-	if (this == nullptr) return;
 	if (!isLeaf) {
 		if (mRightChild != nullptr) delete mRightChild;
 		if (mLeftChild != nullptr) delete mLeftChild;
 	}
-	// else {
-	// 	mLeftListArrChild = nullptr;
-	// 	mRightListArrChild = nullptr;
-	// }
 }
 
 int TreeNode::init(ListArrNode *&listNode, int level) {
