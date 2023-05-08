@@ -1,11 +1,11 @@
 #include "ListArrNode.h"
 #include <iostream>
 
-ListArrNode::ListArrNode(int b, ListArrNode *next) {
+ListArrNode::ListArrNode(int size, ListArrNode *next) {
+	b = size;
 	mArr = new int[b];
 	this->setNext(next);
 	mUsedSize = 0;
-	std::cout << "A ListArrNode was initialized succesfully :D" << std::endl;
 }
 
 ListArrNode::~ListArrNode() {
@@ -37,15 +37,16 @@ void ListArrNode::insertAt(int v, int i) {
 		throw "ListArrNode is full, you cannot insert elements";
 	this->moveElementsRight(i);
 	mArr[i] = v;
+	mUsedSize++;
 }
 
 void ListArrNode::print() {
 	std::cout << "[";
-	for (int i=0;i<this->size()-1;++i) {
-		std::cout << this->mArr[i] << ", ";
+	for (int i=0;i<mUsedSize-1;++i) {
+		std::cout << mArr[i] << ", ";
 	}
 	if (!this->isEmpty()) {
-		std::cout << this->mArr[this->size()-1];
+		std::cout << mArr[mUsedSize-1];
 	}
 	std::cout << "]";
 }
@@ -58,14 +59,16 @@ bool ListArrNode::find(int v) {
 }
 
 bool ListArrNode::isEmpty() {
-	return !this->size();
+	return !mUsedSize;
 }
 
 bool ListArrNode::isFull() {
-	return this->size() == b;
+	return (mUsedSize == b);
 }
 
 void ListArrNode::moveElementsRight(int i) {
+	if (this->isFull())
+		throw "Cannot move elements, the ListArrNode is full";
 	for (int j=mUsedSize;j>i;--j) {
 		mArr[j] = mArr[j-1];
 	}
@@ -73,4 +76,20 @@ void ListArrNode::moveElementsRight(int i) {
 
 int* ListArrNode::getPointerToPos(int i) {
 	return mArr+i;
+}
+
+void ListArrNode::insertRight(int v) {
+	if (this->isFull())
+		throw "Cannot insert at right, The ListArrNode is full";
+	mArr[mUsedSize] = v;	
+	mUsedSize++;
+}
+
+void ListArrNode::mitosis(int i) {
+	ListArrNode *neu = new ListArrNode(this->size(), this->getNext());
+	for (int j=i;j<this->size();++j) {
+		neu->insertRight(*(mArr+j));
+	}
+	mUsedSize = i+1;
+	this->setNext(neu);
 }

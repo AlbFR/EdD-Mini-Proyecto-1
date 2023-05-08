@@ -6,6 +6,7 @@
 class TreeNode {
 	public:
 		// bool init(ListArrNode *listNode, int level);
+		~TreeNode();
 		int init(ListArrNode *listNode, int level);
 		void setValue(int s);
 		TreeNode* getLeftChild();
@@ -19,8 +20,9 @@ class TreeNode {
 		int size();
 		void update();
 		void print();
-		int* getPointerToPos(int i);
+		int* getPointerToPos(int i, bool &newNode);
 		bool isSpaceNextToPos(int i);
+		ListArrNode* getListArrNodeFromPos(int i, int &m);
 
 	private:
 		bool isLeaf;

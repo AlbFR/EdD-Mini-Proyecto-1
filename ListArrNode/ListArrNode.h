@@ -10,18 +10,20 @@ class ListArrNode {
 		int operator[](int i);
 		int size();
 		void insertAt(int v, int i);
+		void insertRight(int v);
 		void print();
 		bool isEmpty();
 		bool isFull();
 		bool find(int v);
 		int* getPointerToPos(int i);
+		void moveElementsRight(int i);
+		void mitosis(int i);
 
 	private:
 		int b;
 		int mUsedSize;
 		ListArrNode* mNext;
 		int *mArr;
-		void moveElementsRight(int i);
 };
 
 #endif
