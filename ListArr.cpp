@@ -21,18 +21,15 @@ int ListArr::size() {
 
 void ListArr::insertLeft(int v) {
 	if (mNodesAmount == 1 && mHead->size() == 0) {
-		std::cerr << "m" << std::endl;
 		mHead->insertRight(v);
-		std::cerr << "m" << std::endl;
 		mTree->update();
-		std::cerr << "m" << std::endl;
 		return;
 	}
 	ListArrNode *neu = new ListArrNode(b, mHead);
 	neu->insertRight(v);
+	deleteTree();
 	mHead = neu;
 	mNodesAmount++;
-	deleteTree();
 	initTree();
 }
 

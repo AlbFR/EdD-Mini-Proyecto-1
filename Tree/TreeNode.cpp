@@ -2,8 +2,10 @@
 #include <iostream>
 
 TreeNode::~TreeNode() {
-	if (mRightChild != nullptr) delete mRightChild;
-	if (mLeftChild != nullptr) delete mLeftChild;
+	if (!isLeaf) {
+		if (mRightChild != nullptr) delete mRightChild;
+		if (mLeftChild != nullptr) delete mLeftChild;
+	}
 }
 
 int TreeNode::init(ListArrNode *listNode, int level) {
@@ -113,7 +115,13 @@ int TreeNode::size() {
 
 void TreeNode::update() {
 	if (isLeaf) {
+		if (mLeftListArrChild == nullptr) {
+			mElementsAmount = 0;
+			return;
+		}
 		mElementsAmount = mLeftListArrChild->size();
+		if (mRightListArrChild == nullptr)
+			return;
 		mElementsAmount += mRightListArrChild->size();
 	}
 	else {
