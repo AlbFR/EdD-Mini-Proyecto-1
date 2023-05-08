@@ -47,8 +47,14 @@ void ListArr::insertAt(int v, int i) {
 	if (i < 0 || this->size() < i) {
 		throw "Index out of bounds, cannot insert there";
 	}
-	if (i == 0)
+	if (i == 0) {
 		this->insertLeft(v);
+		return;
+	}
+	if (i == this->size()) {
+		this->insertRight(v);
+		return;
+	}
 
 	bool newNode = false;
 	*(this->getPointerToPos(i-1, newNode)) = v;
