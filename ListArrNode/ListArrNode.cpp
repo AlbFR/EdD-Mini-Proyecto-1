@@ -2,10 +2,10 @@
 #include <iostream>
 
 ListArrNode::ListArrNode(int size, ListArrNode *next) {
+	mUsedSize = 0;
 	b = size;
 	mArr = new int[b];
 	this->setNext(next);
-	mUsedSize = 0;
 }
 
 ListArrNode::~ListArrNode() {
@@ -17,13 +17,11 @@ ListArrNode* ListArrNode::getNext() {
 }
 
 void ListArrNode::setNext(ListArrNode *next) {
-	if (mNext != nullptr)
-		delete mNext;
 	mNext = next;
 }
 
 int ListArrNode::operator[](int i) {
-	if (this->size() <= i)
+	if (mUsedSize <= i)
 		throw "Index Out of Bounds";
 	return mArr[i];
 }
@@ -37,7 +35,6 @@ void ListArrNode::insertAt(int v, int i) {
 		throw "ListArrNode is full, you cannot insert elements";
 	this->moveElementsRight(i);
 	mArr[i] = v;
-	mUsedSize++;
 }
 
 void ListArrNode::print() {
@@ -69,10 +66,10 @@ bool ListArrNode::isFull() {
 void ListArrNode::moveElementsRight(int i) {
 	if (this->isFull())
 		throw "Cannot move elements, the ListArrNode is full";
+	mUsedSize++;
 	for (int j=mUsedSize;j>i;--j) {
 		mArr[j] = mArr[j-1];
 	}
-	mUsedSize++;
 }
 
 int* ListArrNode::getPointerToPos(int i) {
@@ -87,9 +84,9 @@ void ListArrNode::insertRight(int v) {
 }
 
 void ListArrNode::mitosis(int i) {
-	ListArrNode *neu = new ListArrNode(this->size(), this->getNext());
-	for (int j=i;j<this->size();++j) {
-		neu->insertRight(*(mArr+j));
+	ListArrNode *neu = new ListArrNode(b, this->getNext());
+	for (int j=i;j<mUsedSize;++j) {
+		neu->insertRight(mArr[j]);
 	}
 	mUsedSize = i+1;
 	this->setNext(neu);

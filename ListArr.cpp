@@ -30,6 +30,7 @@ void ListArr::insertLeft(int v) {
 	mHead = neu;
 	mNodesAmount++;
 	deleteTree();
+	mTree = new TreeNode();
 	initTree();
 }
 
@@ -38,8 +39,9 @@ void ListArr::insertRight(int v) {
 }
 
 void ListArr::insertAt(int v, int i) {
-	if (i < 0 || this->size() < i)
+	if (i < 0 || this->size() < i) {
 		throw "Index out of bounds, cannot insert there";
+	}
 	if (i == 0)
 		this->insertLeft(v);
 
@@ -48,6 +50,7 @@ void ListArr::insertAt(int v, int i) {
 	if (newNode) {
 		mNodesAmount++;
 		deleteTree();
+		mTree = new TreeNode();
 		initTree();
 	}
 	else
