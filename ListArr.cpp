@@ -36,11 +36,19 @@ void ListArr::insertLeft(int v) {
 }
 
 void ListArr::insertRight(int v) {
-	// this->insertAt(v, this->size()-1);
+	if (mNodesAmount == 1 && mHead->size() == 0) {
+		mHead->insertRight(v);
+		mTree->update();
+		return;
+	}
 	ListArrNode *neu = new ListArrNode(b, nullptr);
 	mTail->setNext(neu);
 	neu->insertRight(v);
 	mTail = neu;
+	mNodesAmount++;
+	deleteTree();
+	mTree = new TreeNode();
+	initTree();
 }
 
 void ListArr::insertAt(int v, int i) {

@@ -157,16 +157,6 @@ int* TreeNode::getPointerToPos(int i, bool &newNode) {
 	return work->getPointerToPos(m);
 }
 
-bool TreeNode::isSpaceNextToPos(int i) {
-	int m;
-	ListArrNode *work = this->getListArrNodeFromPos(i, m);
-	if (work->isFull())
-		return false;
-	work->moveElementsRight(m);
-	return true;
-	
-}
-
 // m is i mapped to the ListArrNode
 ListArrNode* TreeNode::getListArrNodeFromPos(int i, int &m) {
 	int lower_size;
